@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Reorder List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-reorder-group (ionItemReorder)="reorderList($event)" disabled="false">
+
+      <ion-item-sliding *ngFor="let user of UsersArray" reorder="true">
+        <ion-item>
+          <ion-label>
+            <h2>
+              {{user.name}}
+            </h2>
+            <p>
+              {{user.mobile}}
+            </p>
+          </ion-label>
+          <!-- List reorder button -->
+          <ion-reorder slot="end" class="ios hydrated"></ion-reorder>
+        </ion-item>
+
+        <ion-item-options>
+          <ion-button color="light" [routerLink]="['/edit/', user.$key]">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" (click)="deleteUser(user.$key)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-reorder-group>
+
+  </ion-list>
+</ion-content>
